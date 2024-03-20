@@ -1,1 +1,4 @@
 node_modules
+
+# I use .local for quick links
+.local 
