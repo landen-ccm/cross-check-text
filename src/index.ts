@@ -4,6 +4,8 @@ import { text2 } from './comparisons/text2'
 const text1Name = 'GitHub'
 const text2Name = 'Jira'
 
+const ignoreList: string[] = []
+
 /** Matches a hyphen followed by 4 digits,
  *  then a non-digit character or the end of the string.
  *  EX: '-1234' or '-1234.' or '-1234 '
@@ -12,7 +14,9 @@ const regex = /-\d{4}(\D|$)/g
 
 const getMatches = (text: string) => {
   const matches = text.match(regex) || []
-  return [...new Set(matches.map(match => match.replace(/\D/g, '')))]
+  return [...new Set(matches.map(match => match.replace(/\D/g, '')))].filter(
+    match => !ignoreList.includes(match)
+  )
 }
 
 const uniqueAndCommonMatches = (arr1: string[], arr2: string[]) => {
