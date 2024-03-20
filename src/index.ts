@@ -8,15 +8,18 @@ const ignoreList: string[] = []
 
 /** Matches a hyphen followed by 4 digits,
  *  then a non-digit character or the end of the string.
- *  EX: '-1234' or '-1234.' or '-1234 '
+ *  EX: '-1234' or '-1234/' or '-1234 '
  */
-const regex = /-\d{4}(\D|$)/g
+const matchRegex = /-\d{4}(\D|$)/g
+
+// For removing non-digit characters
+const formatRegex = /\D/g
 
 const getMatches = (text: string) => {
-  const matches = text.match(regex) || []
-  return [...new Set(matches.map(match => match.replace(/\D/g, '')))].filter(
-    match => !ignoreList.includes(match)
-  )
+  const matches = text.match(matchRegex) || []
+  return [
+    ...new Set(matches.map(match => match.replace(formatRegex, ''))),
+  ].filter(match => !ignoreList.includes(match))
 }
 
 const uniqueAndCommonMatches = (arr1: string[], arr2: string[]) => {
