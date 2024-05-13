@@ -2,7 +2,7 @@ import { GitHub } from './comparisons/GitHub'
 import { Jira } from './comparisons/Jira'
 import { deploymentTicket } from './comparisons/Ignore'
 
-const ignoreList: string[] = [...(deploymentTicket || [])]
+const ignoreList: string[] = [deploymentTicket]
 
 /** Matches a hyphen followed by 4 digits,
  *  then a non-digit character or the end of the string.
