@@ -1,10 +1,8 @@
-import { text1 } from './comparisons/text1'
-import { text2 } from './comparisons/text2'
+import { GitHub } from './comparisons/GitHub'
+import { Jira } from './comparisons/Jira'
+import { deploymentTicket } from './comparisons/Ignore'
 
-const text1Name = 'GitHub'
-const text2Name = 'Jira'
-
-const ignoreList: string[] = []
+const ignoreList: string[] = [...(deploymentTicket || [])]
 
 /** Matches a hyphen followed by 4 digits,
  *  then a non-digit character or the end of the string.
@@ -33,8 +31,8 @@ const {
   uniqueToFirst: uniqueToText1,
   uniqueToSecond: uniqueToText2,
   common: inBoth,
-} = uniqueAndCommonMatches(getMatches(text1), getMatches(text2))
+} = uniqueAndCommonMatches(getMatches(GitHub), getMatches(Jira))
 
-console.log('\x1b[31m', `Unique to ${text1Name}:`, uniqueToText1)
-console.log('\x1b[34m', `Unique to ${text2Name}:`, uniqueToText2)
+console.log('\x1b[31m', `Unique to GitHub:`, uniqueToText1)
+console.log('\x1b[34m', `Unique to Jira:`, uniqueToText2)
 console.log('\x1b[37m', 'Common to both:', inBoth)
